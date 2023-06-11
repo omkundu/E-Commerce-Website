@@ -1,6 +1,8 @@
 import './App.css';
 import ProductList from './features/Product-List/ProductList';
 import Login from './features/auth/Components/Login';
+import Cart from './features/cart/Cart';
+import CartPage from './pages/CartPage';
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -24,6 +26,11 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SignupPage></SignupPage>,
+  },
+  // only for testing- Page will be added
+  {
+    path: "/cart",
+    element: <CartPage></CartPage>,
   },
 ]);
 
