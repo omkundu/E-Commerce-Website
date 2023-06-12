@@ -33,6 +33,7 @@ const products = [
 ];
 
 function Checkout() {
+  
   // const count = useSelector(selectCount);
   const dispatch = useDispatch();
   return (
