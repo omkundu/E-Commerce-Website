@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {fetchAllProductsAsync, selectAllProducts } from "../ProductListSlice";
+import {fetchAllProductsAsync, selectAllProducts ,fetchProductsByFiltersAsync} from "../ProductListSlice";
 
 import { Fragment } from "react";
 import { Dialog, Disclosure, Menu, Transition } from "@headlessui/react";
@@ -15,6 +15,7 @@ import {
 } from "@heroicons/react/20/solid";
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/20/solid'
 import { Link } from "react-router-dom";
+import { handler } from "@tailwindcss/aspect-ratio";
 
 
 const items = [
@@ -36,26 +37,28 @@ const filters = [
     id: "category",
     name: "Category",
     options: [
+      { value: "smartphones", label: "Smartphones", checked: false },
       { value: "laptops", label: "laptops", checked: false },
       { value: "fragrances", label: "fragrances", checked: false },
       { value: "skincare", label: "skincare", checked: true },
       { value: "groceries", label: "groceries", checked: false },
       { value: "home-decoration", label: "home-decoration", checked: false },
+
       
 
     ],
   },
   {
-    id: "color",
+    id: "brand",
     name: "Brand",
     options: [
-      { value: "apple", label: "Apple", checked: false },
-      { value: "samsung", label: "Samsung", checked: false },
-      { value: "oppo", label: "OPPO", checked: true },
-      { value: "huawei", label: "Huawei", checked: false },
-      { value: "microsoft-surface", label: "Microsoft Surface", checked: false },
+      { value: "Apple", label: "Apple", checked: false },
+      { value: "Samsung", label: "Samsung", checked: false },
+      { value: "OPPO", label: "OPPO", checked: true },
+      { value: "Huawei", label: "Huawei", checked: false },
+      { value: "Microsoft Surface", label: "Microsoft Surface", checked: false },
       { value: "Infinix", label: "Infinix", checked: false },
-      { value: "hp-pavilion", label: "HP Pavilion", checked: false },
+      { value: "HP Pavilion", label: "HP Pavilion", checked: false },
 
     ],
   },
@@ -633,6 +636,16 @@ export default function ProductList() {
   const dispatch = useDispatch();
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const products=useSelector(selectAllProducts)
+  const [filter,setFilter]=useState({})
+
+const handleFilter=(e,section,option)=>{
+  const newFilter={...filter,[section.id]:option.value}
+  setFilter(newFilter)
+  dispatch(fetchProductsByFiltersAsync(newFilter))
+  console.log(section.id,option.value)
+
+}
+
 
 useEffect(()=>{
   dispatch(fetchAllProductsAsync())
@@ -878,7 +891,7 @@ useEffect(()=>{
                                     defaultValue={option.value}
                                     type="checkbox"
                                     defaultChecked={option.checked}
-                                    onChange={e=>console.log(e)}
+                                    onChange={e=>handleFilter(e,section,option)}
                                     className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                   />
                                   <label
