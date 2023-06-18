@@ -49,6 +49,22 @@ export function fetchProductsByFilters(filter,sort,pagination) {
 }
 
 
+// selectedProduct
+
+
+
+
+export function fetchProductById(id) {
+  return new Promise(async (resolve) =>{
+    //TODO:we will not hard-code server
+  const response= await fetch('http://localhost:8080/products/'+id)
+  const data=await response.json()
+      resolve({data})
+  }
+  );
+}
+
+
 
 
 export function fetchCategories() {
