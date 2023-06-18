@@ -5,6 +5,10 @@ import {
   selectAllProducts,
   fetchProductsByFiltersAsync,
   selectTotalItems,
+  selectBrands,
+  selectCategories,
+  fetchBrandsAsync,
+  fetchCategoriesAsync,
 } from "../ProductListSlice";
 
 import { Fragment } from "react";
@@ -52,37 +56,7 @@ const sortOptions = [
   { name: "Price: High to Low", sort: "rating", order: "desc", current: false },
 ];
 
-const filters = [
-  {
-    id: "category",
-    name: "Category",
-    options: [
-      { value: "smartphones", label: "Smartphones", checked: false },
-      { value: "laptops", label: "laptops", checked: false },
-      { value: "fragrances", label: "fragrances", checked: false },
-      { value: "skincare", label: "skincare", checked: true },
-      { value: "groceries", label: "groceries", checked: false },
-      { value: "home-decoration", label: "home-decoration", checked: false },
-    ],
-  },
-  {
-    id: "brand",
-    name: "Brand",
-    options: [
-      { value: "Apple", label: "Apple", checked: false },
-      { value: "Samsung", label: "Samsung", checked: false },
-      { value: "OPPO", label: "OPPO", checked: true },
-      { value: "Huawei", label: "Huawei", checked: false },
-      {
-        value: "Microsoft Surface",
-        label: "Microsoft Surface",
-        checked: false,
-      },
-      { value: "Infinix", label: "Infinix", checked: false },
-      { value: "HP Pavilion", label: "HP Pavilion", checked: false },
-    ],
-  },
-];
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -91,43 +65,64 @@ export default function ProductList() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const dispatch = useDispatch();
   const products = useSelector(selectAllProducts);
+  const brands = useSelector(selectBrands);
+  const categories= useSelector(selectCategories);
   const totalItems = useSelector(selectTotalItems);
+
+
+  const filters = [
+    {
+      id: "category",
+      name: "Category",
+      options: categories,
+      // categories
+  
+    },
+    {
+      id: "brand",
+      name: "Brand",
+      options: brands,
+    }
+  ];
+  console.log(categories,"i am brands")
+
+
 
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
   const [page, setPage] = useState(1);
-  const handleFilter = (e, section, option) => {
+  const handleFilter = (e, section, options) => {
     const newFilter = { ...filter };
     // Todo:on server it will support multiple categories
     if (e.target.checked) {
       if (newFilter[section.id]) {
-        newFilter[section.id].push(option.value);
+        newFilter[section.id].push(options.value);
       } else {
-        newFilter[section.id] = [option.value];
+        newFilter[section.id] = [options.value];
       }
     } else {
-      const index = newFilter[section.id].findIndex(
-        (el) => el === option.value
+      const index = newFilter[section.id]?.findIndex(
+        (el) => el === options.value
       );
       newFilter[section.id].splice(index, 1);
     }
     console.log({ newFilter });
     setFilter(newFilter);
-    // console.log(section.id,option.value)
+    // console.log(section.id,options.value)
   };
 
-  const handleSort = (e, option) => {
-    const sort = { _sort: option.sort, _order: option.order };
+  const handleSort = (e, options) => {
+    const sort = { _sort: options.sort, _order: options.order };
     console.log({ sort });
     setSort(sort);
     // dispatch(fetchProductsByFiltersAsync({newFilter}))
-    // console.log(section.id,option.value)
+    // console.log(section.id,options.value)
   };
 
   const handlePage = ( page) => {
     setPage(page);
     // dispatch(fetchProductsByFiltersAsync({newFilter}))
-    // console.log(section.id,option.value)
+    // console.log(section.id,options.value)
   };
 
   useEffect(() => {
@@ -140,6 +135,21 @@ export default function ProductList() {
     setPage(1)
   },[totalItems,sort])
 
+useEffect(()=>{
+dispatch(fetchBrandsAsync())
+dispatch(fetchCategoriesAsync())
+
+
+},[])
+
+
+
+
+
+
+
+
+
   return (
     <div>
       <div className="bg-white">
@@ -148,6 +158,7 @@ export default function ProductList() {
             handleFilter={handleFilter}
             mobileFiltersOpen={mobileFiltersOpen}
             setMobileFiltersOpen={setMobileFiltersOpen}
+            filters={filters}
           ></MobileFilter>
 
           <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -179,20 +190,20 @@ export default function ProductList() {
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1">
-                        {sortOptions.map((option) => (
-                          <Menu.Item key={option.name}>
+                        {sortOptions.map((options) => (
+                          <Menu.Item key={options.name}>
                             {({ active }) => (
                               <p
-                                onClick={(e) => handleSort(e, option)}
+                                onClick={(e) => handleSort(e, options)}
                                 className={classNames(
-                                  option.current
+                                  options.current
                                     ? "font-medium text-gray-900"
                                     : "text-gray-500",
                                   active ? "bg-gray-100" : "",
                                   "block px-4 py-2 text-sm"
                                 )}
                               >
-                                {option.name}
+                                {options.name}
                               </p>
                             )}
                           </Menu.Item>
@@ -226,7 +237,8 @@ export default function ProductList() {
               </h2> */}
 
               <div className="grid grid-cols-1 gap-x-8 gap-y-10 lg:grid-cols-4">
-                <DesktopFilter handleFilter={handleFilter}></DesktopFilter>
+                <DesktopFilter handleFilter={handleFilter} filters={filters}
+                ></DesktopFilter>
                 {/* Product Grid */}
                 <div className="lg:col-span-3">
                   <ProductGrid products={products}></ProductGrid>
@@ -253,6 +265,7 @@ function MobileFilter({
   mobileFiltersOpen,
   setMobileFiltersOpen,
   handleFilter,
+  filters
 }) {
   return (
     <Transition.Root show={mobileFiltersOpen} as={Fragment}>
@@ -330,24 +343,24 @@ function MobileFilter({
                         </h3>
                         <Disclosure.Panel className="pt-6">
                           <div className="space-y-6">
-                            {section.options.map((option, optionIdx) => (
+                            {section.options.map((options, optionIdx) => (
                               <div
-                                key={option.value}
+                                key={options.value}
                                 className="flex items-center"
                               >
                                 <input
                                   id={`filter-mobile-${section.id}-${optionIdx}`}
                                   name={`${section.id}[]`}
-                                  defaultValue={option.value}
+                                  defaultValue={options.value}
                                   type="checkbox"
-                                  defaultChecked={option.checked}
+                                  defaultChecked={options.checked}
                                   className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                                 />
                                 <label
                                   htmlFor={`filter-mobile-${section.id}-${optionIdx}`}
                                   className="ml-3 min-w-0 flex-1 text-gray-500"
                                 >
-                                  {option.label}
+                                  {options.label}
                                 </label>
                               </div>
                             ))}
@@ -366,7 +379,7 @@ function MobileFilter({
   );
 }
 
-function DesktopFilter({ handleFilter }) {
+function DesktopFilter({ handleFilter,filters }) {
   return (
     <form className="hidden lg:block">
       {filters.map((section) => (
@@ -393,22 +406,26 @@ function DesktopFilter({ handleFilter }) {
               </h3>
               <Disclosure.Panel className="pt-6">
                 <div className="space-y-4">
-                  {section.options.map((option, optionIdx) => (
-                    <div key={option.value} className="flex items-center">
+                  {section.options.map((options, optionIdx) => (
+                    <div key={options.value} className="flex items-center">
                       <input
                         id={`filter-${section.id}-${optionIdx}`}
                         name={`${section.id}[]`}
-                        defaultValue={option.value}
+                        defaultValue={options.value}
                         type="checkbox"
-                        defaultChecked={option.checked}
-                        onChange={(e) => handleFilter(e, section, option)}
+                        defaultChecked={options.checked}
+                        onChange={(e) => handleFilter(e, section, options)}
+                        // onChange={(e)=>{
+                        //   console.log(e.target.value,"Hey there")
+                        // }}
+                        
                         className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
                       />
                       <label
                         htmlFor={`filter-${section.id}-${optionIdx}`}
                         className="ml-3 text-sm text-gray-600"
                       >
-                        {option.label}
+                        {options.label}
                       </label>
                     </div>
                   ))}
