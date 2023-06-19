@@ -70,13 +70,13 @@ export default function ProductList() {
   const totalItems = useSelector(selectTotalItems);
 
 
+  
   const filters = [
     {
       id: "category",
       name: "Category",
       options: categories,
       // categories
-  
     },
     {
       id: "brand",
@@ -84,7 +84,7 @@ export default function ProductList() {
       options: brands,
     }
   ];
-  console.log(categories,"i am brands")
+  
 
 
 
@@ -190,7 +190,7 @@ dispatch(fetchCategoriesAsync())
                   >
                     <Menu.Items className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-2xl ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div className="py-1">
-                        {sortOptions.map((options) => (
+                        {sortOptions?.map((options) => (
                           <Menu.Item key={options.name}>
                             {({ active }) => (
                               <p
@@ -313,7 +313,7 @@ function MobileFilter({
               <form className="mt-4 border-t border-gray-200">
                 <h3 className="sr-only">Categories</h3>
 
-                {filters.map((section) => (
+                {filters?.map((section) => (
                   <Disclosure
                     as="div"
                     key={section.id}
@@ -382,7 +382,7 @@ function MobileFilter({
 function DesktopFilter({ handleFilter,filters }) {
   return (
     <form className="hidden lg:block">
-      {filters.map((section) => (
+      {filters?.map((section) => (
         <Disclosure
           as="div"
           key={section.id}
@@ -406,7 +406,7 @@ function DesktopFilter({ handleFilter,filters }) {
               </h3>
               <Disclosure.Panel className="pt-6">
                 <div className="space-y-4">
-                  {section.options.map((options, optionIdx) => (
+                  {section?.options?.map((options, optionIdx) => (
                     <div key={options.value} className="flex items-center">
                       <input
                         id={`filter-${section.id}-${optionIdx}`}

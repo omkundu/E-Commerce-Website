@@ -67,14 +67,15 @@ export function fetchProductById(id) {
 
 
 
-export function fetchCategories() {
-  return new Promise(async (resolve) =>{
-  const response= await fetch('http://localhost:8080/categories')
-  const data=await response.json()
-      resolve({data})
-  }
-  );
+// 
+
+
+export async function fetchCategories() {
+  const response = await fetch('http://localhost:8080/categories');
+  const data = await response.json();
+  return { data };
 }
+
 
 export function fetchBrands() {
   return new Promise(async (resolve) =>{

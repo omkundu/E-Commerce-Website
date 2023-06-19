@@ -106,8 +106,8 @@ export const productSlice = createSlice({
       .addCase(fetchCategoriesAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.categories = action.payload;
-        
       })
+      
       .addCase(fetchAllProductByIdsAsync.pending, (state) => {
         state.status = 'loading';
       })
@@ -126,7 +126,7 @@ export const selectAllProducts = (state) => state?.product?.products;
 export const selectBrands = (state) => state?.product?.brands;
 export const selectCategories = (state) => state?.product?.categories;
 export const selectTotalItems = (state) => state?.product?.totalItems;
-export const selectProductById = (state) => state.product.selectedProduct;
+export const selectProductById = (state) => state?.product?.selectedProduct;
 
 
 // We can also write thunks by hand, which may contain both sync and async logic.
