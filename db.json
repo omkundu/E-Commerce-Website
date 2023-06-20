@@ -1800,7 +1800,7 @@
         "https://i.dummyjson.com/data/products/9/4.jpg",
         "https://i.dummyjson.com/data/products/9/thumbnail.jpg"
       ],
-      "quantity": 1,
+      "quantity": 3,
       "user": 1
     },
     {
@@ -1820,7 +1820,7 @@
         "https://i.dummyjson.com/data/products/7/3.jpg",
         "https://i.dummyjson.com/data/products/7/thumbnail.jpg"
       ],
-      "quantity": 1,
+      "quantity": 3,
       "user": 1
     }
   ]
