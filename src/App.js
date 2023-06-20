@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import './App.css';
 import ProductDetails from './features/Product-List/components/ProductDetails';
 import ProductList from './features/Product-List/components/ProductList';
@@ -17,6 +18,9 @@ import {
   Route,
   Link,
 } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchItemsByUserIdAsync } from './features/cart/cartSlice';
+import { selectLoggedInUser } from './features/auth/Components/authSlice';
 
 const router = createBrowserRouter([
   {
@@ -57,6 +61,13 @@ const router = createBrowserRouter([
 
 
 function App() {
+  const dispatch=useDispatch()
+  const user=useSelector(selectLoggedInUser)
+  useEffect(()=>{
+    if(user){
+      dispatch(fetchItemsByUserIdAsync(user.id))
+    }
+  },[dispatch,user])
   return (
     <div className="App">
       {/* <Home></Home> */}
