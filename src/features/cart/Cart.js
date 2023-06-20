@@ -1,9 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {   selectItems,updateCartAsync } from "./cartSlice";
+import {   deleteItemFromCartAsync, selectItems,updateCartAsync } from "./cartSlice";
 
 
 import { Link } from "react-router-dom";
+import { deleteItemFromCart } from "./cartAPI";
 
 
 
@@ -20,8 +21,9 @@ export default function Cart() {
 
   }
 
-  console.log(items)
-
+const handleRemove=(e,id)=>{
+  dispatch(deleteItemFromCartAsync(id))
+}
   return (
         <div className="mx-auto mt-9 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
      
@@ -74,6 +76,7 @@ export default function Cart() {
 
                      <div className="flex">
                        <button
+                       onClick={e=>handleRemove(e,item.id)}
                          type="button"
                          className="font-medium text-indigo-600 hover:text-indigo-500"
                        >
