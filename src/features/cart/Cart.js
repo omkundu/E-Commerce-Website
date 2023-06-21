@@ -22,6 +22,7 @@ export default function Cart() {
   }
 
 const handleRemove=(e,id)=>{
+  
   dispatch(deleteItemFromCartAsync(id))
 }
   return (
