@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import {   deleteItemFromCartAsync, selectItems,updateCartAsync } from "./cartSlice";
 
 
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { deleteItemFromCart } from "./cartAPI";
+import { selectLoggedInUser } from "../auth/Components/authSlice";
 
 
 
@@ -14,7 +15,7 @@ export default function Cart() {
   const items=useSelector(selectItems)
   const totalAmount=items.reduce((amount,item)=>item.price*item.quantity+amount,0);
   const totalItems=items.reduce((total,item)=>item.quantity+total,0)
-      
+    
 
   const handleQuantity=(e,item)=>{
     dispatch(updateCartAsync({...item,quantity:+e.target.value}))
@@ -26,7 +27,11 @@ const handleRemove=(e,id)=>{
   dispatch(deleteItemFromCartAsync(id))
 }
   return (
-        <div className="mx-auto mt-9 bg-white max-w-7xl px-4 sm:px-6 lg:px-8">
+   
+
+    <>
+     {!items.length &&<Navigate to='/' replace={true}></Navigate>}
+        <div className="mx-auto mt-12 bg-white max-w-6xl px-4 sm:px-6 lg:px-8">
      
       <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
 
@@ -133,7 +138,7 @@ const handleRemove=(e,id)=>{
        </div>
        </div>
     
-        
+       </>
    
   );
 }
