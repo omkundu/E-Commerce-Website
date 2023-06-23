@@ -14,6 +14,7 @@ import {
   selectLoggedInUser,
   updateUserAsync,
 } from "../features/auth/Components/authSlice";
+import { createOrderAsync } from "../features/order/orderSlice";
 
 function Checkout() {
   const items = useSelector(selectItems);
@@ -34,12 +35,13 @@ function Checkout() {
   const [selectedAddress, setSelecedtAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
+
   const handleQuantity = (e, item) => {
     dispatch(updateCartAsync({ ...item, quantity: +e.target.value }));
   };
 
   const handleAddress = (e) => {
-    setSelecedtAddress(user.address[e.target.value]);
+    setSelecedtAddress(user.addresses[e.target.value]);
   };
 
   const handlePayment = (e) => {
@@ -50,12 +52,13 @@ function Checkout() {
     dispatch(deleteItemFromCartAsync(id));
   };
 
-  const handleOrder = (e, id) => {
-    dispatch(deleteItemFromCartAsync(id));
+  const handleOrder = (e) => {
+    const order={items,totalAmount,totalItems,user,paymentMethod,selectedAddress}
+    dispatch(createOrderAsync(order))
   };
+  const dispatch = useDispatch();
 
   // const count = useSelector(selectCount);
-  const dispatch = useDispatch();
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
@@ -428,7 +431,7 @@ function Checkout() {
                         <div className="mt-6">
                           <div
                             onClick={handleOrder}
-                            className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                            className="flex cursor-pointer items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
                           >
                             Order Now
                           </div>
