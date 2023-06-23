@@ -1732,11 +1732,33 @@
     {
       "email": "omkundu156@gmail.com",
       "password": "omkundu1234@O",
+      "addresses": [
+       
+        {
+          "name": "Bhagavat Kundu",
+          "email": "omkundu156@gmail.com",
+          "Phone": "7294170124",
+          "street": "Near chandil thana",
+          "city": "Chandil",
+          "state": "JHARKHAND",
+          "pinCode": "832401"
+        },
+        {
+          "name": "Bhagavat Kundu",
+          "email": "omkundu156@gmail.com",
+          "Phone": "7294170124",
+          "street": "Near chandil thana",
+          "city": "Chandil",
+          "state": "JHARKHAND",
+          "pinCode": "832401"
+        }
+      ],
       "id": 1
     },
     {
       "email": "omkundu156@gmail.com",
       "password": "omkundu1234@O",
+      "addresses": [],
       "id": 2
     }
   ],
