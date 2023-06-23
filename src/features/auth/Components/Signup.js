@@ -7,9 +7,8 @@ import { Link, Navigate } from "react-router-dom";
 export default function Signup() {
   // const count = useSelector(selectCount);
   const dispatch = useDispatch();
-  
+
   const {
-    
     handleSubmit,
     register,
     formState: { errors },
@@ -20,7 +19,7 @@ export default function Signup() {
 
   return (
     <>
-        {user &&<Navigate to='/' replace={true}></Navigate>}
+      {user && <Navigate to="/" replace={true}></Navigate>}
 
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -41,8 +40,12 @@ export default function Signup() {
             onSubmit={handleSubmit((data) => {
               console.log(data);
               dispatch(
-                createUserAsync({ email: data.email, password: data.password,addresses:[] })
-              )
+                createUserAsync({
+                  email: data.email,
+                  password: data.password,
+                  addresses: [],
+                })
+              );
             })}
           >
             <div>

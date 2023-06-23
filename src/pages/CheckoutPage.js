@@ -35,7 +35,6 @@ function Checkout() {
   const [selectedAddress, setSelecedtAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("cash");
 
-
   const handleQuantity = (e, item) => {
     dispatch(updateCartAsync({ ...item, quantity: +e.target.value }));
   };
@@ -53,8 +52,15 @@ function Checkout() {
   };
 
   const handleOrder = (e) => {
-    const order={items,totalAmount,totalItems,user,paymentMethod,selectedAddress}
-    dispatch(createOrderAsync(order))
+    const order = {
+      items,
+      totalAmount,
+      totalItems,
+      user,
+      paymentMethod,
+      selectedAddress,
+    };
+    dispatch(createOrderAsync(order));
   };
   const dispatch = useDispatch();
 
