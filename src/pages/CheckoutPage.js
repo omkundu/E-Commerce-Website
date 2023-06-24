@@ -14,10 +14,11 @@ import {
   selectLoggedInUser,
   updateUserAsync,
 } from "../features/auth/Components/authSlice";
-import { createOrderAsync } from "../features/order/orderSlice";
+import { createOrderAsync, selectCurrentOrder, selectCurrentOrderStatus } from "../features/order/orderSlice";
 
 function Checkout() {
   const items = useSelector(selectItems);
+  const currentOrder=useSelector(selectCurrentOrder)
   const totalAmount = items.reduce(
     (amount, item) => item.price * item.quantity + amount,
     0
@@ -59,6 +60,7 @@ function Checkout() {
       user,
       paymentMethod,
       selectedAddress,
+      status:"Pending"
     };
     dispatch(createOrderAsync(order));
   };
@@ -68,7 +70,7 @@ function Checkout() {
   return (
     <>
       {!items.length && <Navigate to="/" replace={true}></Navigate>}
-
+             {currentOrder&&<Navigate to={`/order-success/${currentOrder.id}`} replace={true}></Navigate> }
       <div className="mx-auto max-w-9xl px-4 sm:px-6 lg:px-5">
         <div>
           <div className="mx-auto mx-w-7xl px-4 sm:px-7 lg:px-8">
