@@ -1,9 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { fetchCount, fetchLoggedInUser, fetchLoggedInUserOrders } from './userAPI';
+import { fetchCount, fetchLoggedInUser, fetchLoggedInUserOrders, updatedUser } from './userAPI';
 
 const initialState = {
   userOrders: [],
   status: 'idle',
+  userInfo:null //this info will be used case of detailed user info, while auth will
+  //only be used for loggedsInUser id etc checks.
 };
 
 
@@ -11,6 +13,24 @@ export const fetchLoggedInUserOrderAsync = createAsyncThunk(
   'user/fetchLoggedInUserOrders',
   async (id) => {
     const response = await fetchLoggedInUserOrders(id);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+export const fetchLoggedInUserAsync = createAsyncThunk(
+  'user/fetchLoggedInUser',
+  async (id) => {
+    const response = await fetchLoggedInUser(id);
+    // The value we return becomes the `fulfilled` action payload
+    return response.data;
+  }
+);
+
+export const updatedUserAsync = createAsyncThunk(
+  'user/updatedUser',
+  async (id) => {
+    const response = await updatedUser(id);
     // The value we return becomes the `fulfilled` action payload
     return response.data;
   }
@@ -34,9 +54,24 @@ export const userSlice = createSlice({
       })
       .addCase(fetchLoggedInUserOrderAsync.fulfilled, (state, action) => {
         state.status = 'idle';
-        //this info can be different or more from logged-in User info
         state.userOrders = action.payload;
-      });
+      })
+      .addCase(updatedUserAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(updatedUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.userOrders = action.payload;
+      })
+      .addCase(fetchLoggedInUserAsync.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchLoggedInUserAsync.fulfilled, (state, action) => {
+        state.status = 'idle';
+        state.userInfo = action.payload;
+      })
+      
+      
   },
 });
 
@@ -44,6 +79,8 @@ export const { increment} = userSlice.actions;
 
 
 export const selectUserOrders = (state) => state.user.userOrders;
+export const selectUserInfo = (state) => state.user.userInfo;
+
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.

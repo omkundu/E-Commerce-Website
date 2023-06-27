@@ -11,10 +11,11 @@ import {
 import { useForm } from "react-hook-form";
 import {
   checkUserAsync,
-  selectLoggedInUser,
+
   updateUserAsync,
 } from "../features/auth/Components/authSlice";
 import { createOrderAsync, selectCurrentOrder, selectCurrentOrderStatus } from "../features/order/orderSlice";
+import { selectUserInfo } from "../features/user/userSlice";
 
 function Checkout() {
   const items = useSelector(selectItems);
@@ -24,7 +25,7 @@ function Checkout() {
     0
   );
   const totalItems = items.reduce((total, item) => item.quantity + total, 0);
-  const user = useSelector(selectLoggedInUser);
+  const user = useSelector(selectUserInfo);
 
   const {
     handleSubmit,

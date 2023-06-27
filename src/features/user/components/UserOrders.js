@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchLoggedInUserOrderAsync, selectOrder, selectUserOrders } from "../userSlice";
+import { fetchLoggedInUserOrderAsync, selectOrder, selectUserInfo, selectUserOrders } from "../userSlice";
 import { selectLoggedInUser } from "../../auth/Components/authSlice";
 import { Link } from "react-router-dom";
 
 export default function UserOrders() {
   const dispatch = useDispatch();
-  const user= useSelector(selectLoggedInUser)
+  const user= useSelector(selectUserInfo)
   const orders=useSelector(selectUserOrders)
 
   useEffect(()=>{
@@ -87,9 +87,12 @@ export default function UserOrders() {
               <p className="mt-0.5 text-sm text-gray-500">
                 Shipping and taxes calculated at checkout.
               </p>
-            
+                
+
              
+              
             </div>
+           
           </div>
         </div>
       </div>
