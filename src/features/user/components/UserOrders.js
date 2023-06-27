@@ -12,7 +12,6 @@ export default function UserOrders() {
   useEffect(()=>{
     dispatch(fetchLoggedInUserOrderAsync(user.id))
   },[])
-   console.log(orders,"orders getting or not")
   return (
     <div>
       {orders?.map((order)=>(
