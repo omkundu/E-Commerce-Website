@@ -1736,11 +1736,11 @@
         {
           "name": "Riya Kumari",
           "email": "riyakumari156@gmail.com",
-          "Phone": "07294170124",
-          "street": "Near chandil thana,chandil",
           "city": "Sakchi",
+          "pinCode": "832401",
+          "Phone": "07294170124",
           "state": "JHARKHAND",
-          "pinCode": "832401"
+          "street": "Near chandil thana,chandil"
         },
         {
           "name": "Om Kundu",
@@ -1750,6 +1750,15 @@
           "city": "Chandil",
           "state": "JHARKHAND",
           "pinCode": "832401"
+        },
+        {
+          "name": "manju das",
+          "email": "manjudas11223344@gmail.com",
+          "Phone": "7024355678",
+          "street": "11th street bhind milan chowk",
+          "city": "puna",
+          "state": "puna",
+          "pinCode": "2324234"
         }
       ],
       "id": 1
