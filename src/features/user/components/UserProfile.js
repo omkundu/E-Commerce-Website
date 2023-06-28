@@ -43,6 +43,13 @@ const handleEditForm=(index)=>{
   const address=user.addresses[index]
   setValue("name",address.name)
   setValue("email",address.email)
+  setValue("city",address.city)
+  setValue("pinCode",address.pinCode)
+  setValue("Phone",address.Phone)
+  setValue("state",address.state)
+  setValue("street",address.street)
+
+
 
 }
 
