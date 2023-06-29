@@ -1734,15 +1734,6 @@
       "password": "omkundu1234@O",
       "addresses": [
         {
-          "name": "Riya Kumari",
-          "email": "riyakumari156@gmail.com",
-          "city": "Sakchi",
-          "pinCode": "832401",
-          "Phone": "07294170124",
-          "state": "JHARKHAND",
-          "street": "Near chandil thana,chandil"
-        },
-        {
           "name": "Om Kundu",
           "email": "omkundu156@gmail.com",
           "Phone": "07004398824",
@@ -2592,6 +2583,70 @@
       "selectedAddress": null,
       "status": "Pending",
       "id": 14
+    },
+    {
+      "items": [
+        {
+          "title": "MacBook Pro",
+          "description": "MacBook Pro 2021 with mini-LED display may launch between September, November",
+          "price": 1749,
+          "discountPercentage": 11.02,
+          "rating": 4.57,
+          "stock": 83,
+          "brand": "Apple",
+          "category": "laptops",
+          "thumbnail": "https://i.dummyjson.com/data/products/6/thumbnail.png",
+          "images": [
+            "https://i.dummyjson.com/data/products/6/1.png",
+            "https://i.dummyjson.com/data/products/6/2.jpg",
+            "https://i.dummyjson.com/data/products/6/3.png",
+            "https://i.dummyjson.com/data/products/6/4.jpg"
+          ],
+          "quantity": 1,
+          "user": 1,
+          "id": 1
+        }
+      ],
+      "totalAmount": 1749,
+      "totalItems": 1,
+      "user": {
+        "email": "omkundu156@gmail.com",
+        "password": "omkundu1234@O",
+        "addresses": [
+          {
+            "name": "Riya Kumari",
+            "email": "riyakumari156@gmail.com",
+            "city": "Sakchi",
+            "pinCode": "832401",
+            "Phone": "07294170124",
+            "state": "JHARKHAND",
+            "street": "Near chandil thana,chandil"
+          },
+          {
+            "name": "Om Kundu",
+            "email": "omkundu156@gmail.com",
+            "Phone": "07004398824",
+            "street": "Near chandil thana",
+            "city": "Chandil",
+            "state": "JHARKHAND",
+            "pinCode": "832401"
+          },
+          {
+            "name": "manju das",
+            "email": "manjudas11223344@gmail.com",
+            "Phone": "7024355678",
+            "street": "11th street bhind milan chowk",
+            "city": "puna",
+            "state": "puna",
+            "pinCode": "2324234"
+          }
+        ],
+        "id": 1
+      },
+      "paymentMethod": "cash",
+      "selectedAddress": null,
+      "status": "Pending",
+      "id": 15
     }
   ]
 }
