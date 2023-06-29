@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   checkUserAsync,
-  increment,
-  incrementAsync,
+
   selectError,
   selectLoggedInUser,
 } from "./authSlice";
@@ -11,7 +10,6 @@ import { Link, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 export default function Login() {
-  // const count = useSelector(selectCount);
   const error = useSelector(selectError);
   const dispatch = useDispatch();
   const user = useSelector(selectLoggedInUser);
@@ -71,24 +69,23 @@ export default function Login() {
                 <p className="text-red-500">{errors?.email?.message}</p>
               </div>
             </div>
-           <div className="flex items-center justify-between">
-            <label
-              htmlFor="password"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Password
-            </label>
-            <div className="text-sm">
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Password
+              </label>
+              <div className="text-sm">
                 <Link
-                to="/forgot-password"
-                className="font-semibold text-indigo-600 hover:text-indigo-500"
+                  to="/forgot-password"
+                  className="font-semibold text-indigo-600 hover:text-indigo-500"
                 >
                   Forgot Password
-                  
                 </Link>
+              </div>
             </div>
-            </div>
-          
+
             <div className="mt-2">
               <input
                 id="password"
@@ -103,21 +100,7 @@ export default function Login() {
             {error && <p className="text-red-500">{error.message}</p>}
 
             <div>
-              {/* <div className="flex items-center justify-between">
-            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-             Confirm Password
-            </label>
            
-          </div>
-          <div className="mt-2">
-            <input
-              id="confirm-password"
-              name="confirm-password"
-              type="password"
-              required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-            />
-          </div> */}
             </div>
 
             <div>

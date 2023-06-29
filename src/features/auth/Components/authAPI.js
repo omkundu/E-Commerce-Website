@@ -1,4 +1,3 @@
-
 // A mock function to mimic making an async request for data
 export function createUser(usersData) {
   return new Promise(async (resolve) => {
@@ -31,12 +30,8 @@ export function checkUser(loginInfo) {
   });
 }
 
-
-
 export function signOut(usersId) {
   return new Promise(async (resolve) => {
-   
-    resolve({ data:"success" });
+    resolve({ data: "success" });
   });
 }
-
