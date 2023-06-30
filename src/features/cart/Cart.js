@@ -70,9 +70,13 @@ export default function Cart() {
                             >
                               Qty
                             </label>
+
                             <select
+
                               onChange={(e) => handleQuantity(e, item)}
+
                               value={item.quantity}
+                              
                             >
                               <option value="1">1</option>
                               <option value="2">2</option>
