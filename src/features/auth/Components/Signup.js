@@ -5,10 +5,12 @@ import { increment, selectLoggedInUser, createUserAsync } from "./authSlice";
 import { Link, Navigate } from "react-router-dom";
 
 export default function Signup() {
+
   // const count = useSelector(selectCount);
   const dispatch = useDispatch();
 
   const {
+    
     handleSubmit,
     register,
     formState: { errors },
