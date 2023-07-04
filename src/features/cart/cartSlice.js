@@ -57,7 +57,7 @@ export const fetchItemsByUserIdAsync = createAsyncThunk(
   }
 );
 
-export const counterSlice = createSlice({
+export const authSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
@@ -112,11 +112,11 @@ export const counterSlice = createSlice({
   },
 });
 
-export const { increment } = counterSlice.actions;
+export const { increment } = authSlice.actions;
 
 export const selectItems = (state) => state?.cart?.items;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
 
-export default counterSlice.reducer;
+export default authSlice.reducer;
