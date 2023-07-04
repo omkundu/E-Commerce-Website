@@ -1759,6 +1759,13 @@
       "password": "omkundu1234@O",
       "addresses": [],
       "id": 2
+    },
+    {
+      "email": "admin123@gmail.com",
+      "password": "omkundu123@O",
+      "addresses": [],
+      "role": "admin",
+      "id": 3
     }
   ],
   "cart": [],
@@ -1904,6 +1911,7 @@
       "user": {
         "email": "omkundu156@gmail.com",
         "password": "omkundu1234@O",
+        "role": "admin",
         "addresses": [
           {
             "name": "Bhagavat Kundu",
@@ -1968,6 +1976,7 @@
       "user": {
         "email": "omkundu156@gmail.com",
         "password": "omkundu1234@O",
+        "role": "admin",
         "addresses": [
           {
             "name": "Bhagavat Kundu",
