@@ -225,7 +225,14 @@ export default function AdminProductList() {
                   filters={filters}
                 ></DesktopFilter>
                 {/* Product Grid */}
+               
                 <div className="lg:col-span-3">
+                <div>
+                  <Link to="/admin/product-form" 
+                  className="rounded-md mx-10 bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                   >Add New Product
+                   </Link>
+                 </div>
                   <ProductGrid products={products}></ProductGrid>
                 </div>
                 {/* Product grid end */}
@@ -517,6 +524,7 @@ function ProductGrid({ products }) {
 
             <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3   xl:gap-x-6 ">
               {products.map((product) => (
+                <div>
                 <Link to={`/product-detail/${product.id}`}>
                   <div
                     key={product.id}
@@ -557,9 +565,16 @@ function ProductGrid({ products }) {
                           ${product.price}
                         </p>
                       </div>
+                    
                     </div>
+                   
                   </div>
                 </Link>
+                <div>
+                          <button  className="rounded-md my-5 bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                          >Edit Product</button>
+                        </div>
+                </div>
               ))}
             </div>
           </div>
