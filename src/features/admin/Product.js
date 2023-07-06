@@ -1,7 +1,11 @@
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { useSelector } from 'react-redux';
+import { selectBrands, selectCategories } from './ProductListSlice';
 
 function ProductForm() {
+    const brands=useSelector(selectBrands)
+    const categories=useSelector(selectCategories)
   return (
     <div>
       <form>
@@ -54,6 +58,46 @@ function ProductForm() {
                   Write a few sentences about Product.
                 </p>
               </div>
+
+
+              <div className="col-span-full">
+
+                <label
+                htmlFor="brand"
+                className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                Brand
+                </label>
+                <div className="mt-2">
+               <select>
+             
+                    <option value="">---Choose Brand---</option>
+                {brands.map((brand)=>(<option value={brand.value}>{brand.label}</option>)
+                )}
+               </select>
+                </div>
+                
+                </div>
+
+
+                <div className="col-span-full">
+
+                <label
+                htmlFor="category"
+                className="block text-sm font-medium leading-6 text-gray-900"
+                >
+                Category
+                </label>
+                <div className="mt-2">
+                <select>
+
+                    <option value="">---Choose Category---</option>
+                {categories.map((category)=>(<option value={category.value}>{category.label}</option>)
+                )}
+                </select>
+                </div>
+
+                </div>
 
               <div className="sm:col-span-2">
                 <label
