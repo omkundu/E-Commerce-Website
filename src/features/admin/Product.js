@@ -1,14 +1,37 @@
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
-import { useSelector } from 'react-redux';
-import { selectBrands, selectCategories } from './ProductListSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectBrands } from './ProductListSlice';
+import { useForm } from 'react-hook-form';
+import { createProductAsync } from '../Product-List/ProductListSlice';
 
 function ProductForm() {
-    const brands=useSelector(selectBrands)
-    const categories=useSelector(selectCategories)
+    const brands=useSelector(selectBrands);
+    // const categories=useSelector(selectCategories);
+    const dispatch=useDispatch();
+
+    const {
+        handleSubmit,
+        register,
+        formState: { errors },
+      } = useForm();
+    
+
+
   return (
     <div>
-      <form>
+        noValidate
+      <form  onSubmit={handleSubmit((data) => {
+        const product={...data}
+        product.images=[product.image1,product.image2,product.image3,product.thumbnail]
+        product.rating=0;
+        delete product["image1"]
+        delete product["image2"]
+        delete product["image3"]
+        console.log(product)
+      dispatch(createProductAsync(product))
+           
+            })}>
         <div className="space-y-12 bg-white p-12">
           <div className="border-b border-gray-900/10 pb-12">
             <h2 className="text-base font-semibold leading-7 text-gray-900">
@@ -29,7 +52,9 @@ function ProductForm() {
                    
                     <input
                       type="text"
-                      name="title"
+                      {...register("title",{
+                        required: "title is required",
+                      })}
                       id="title"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
@@ -48,7 +73,9 @@ function ProductForm() {
                 <div className="mt-2">
                   <textarea
                     id="description"
-                    name="description"
+                    {...register("description",{
+                        required: "description is required",
+                      })}
                     rows={3}
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     defaultValue={""}
@@ -69,7 +96,9 @@ function ProductForm() {
                 Brand
                 </label>
                 <div className="mt-2">
-               <select>
+               <select {...register("brand",{
+                        required: "brand is required",
+                      })}>
              
                     <option value="">---Choose Brand---</option>
                 {brands.map((brand)=>(<option value={brand.value}>{brand.label}</option>)
@@ -80,7 +109,7 @@ function ProductForm() {
                 </div>
 
 
-                <div className="col-span-full">
+                {/* <div className="col-span-full">
 
                 <label
                 htmlFor="category"
@@ -89,7 +118,9 @@ function ProductForm() {
                 Category
                 </label>
                 <div className="mt-2">
-                <select>
+                <select  {...register("category",{
+                        required: "Category is required",
+                      })}>
 
                     <option value="">---Choose Category---</option>
                 {categories.map((category)=>(<option value={category.value}>{category.label}</option>)
@@ -97,7 +128,7 @@ function ProductForm() {
                 </select>
                 </div>
 
-                </div>
+                </div> */}
 
               <div className="sm:col-span-2">
                 <label
@@ -111,7 +142,11 @@ function ProductForm() {
                    
                     <input
                       type="number"
-                      name="Price"
+                      {...register("price",{
+                        required: "price is required",
+                        min:1,
+                        max:10000
+                      })}
                       id="price"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
@@ -123,14 +158,18 @@ function ProductForm() {
                   htmlFor="discountPercentage"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                    Discount
+                    Discount Percentage
                 </label>
                 <div className="mt-2">
                   <div className="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
                    
                     <input
                       type="number"
-                      name="discountPercentage"
+                      {...register("discountPercentage",{
+                        required: "discountPercentage is required",
+                        min:0,
+                        max:100
+                      })}
                       id="discountPercentage"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
@@ -149,7 +188,11 @@ function ProductForm() {
                    
                     <input
                       type="number"
-                      name="stock"
+                      {...register("stock",{
+                        required: "stock is required",
+                        min:0
+                        
+                      })}                      
                       id="stock"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
@@ -170,7 +213,9 @@ function ProductForm() {
                    
                     <input
                       type="text"
-                      name="thumbnail"
+                      {...register("thumbnail",{
+                        required: "thumbnail is required",
+                      })}     
                       id="thumbnail"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
@@ -190,7 +235,9 @@ function ProductForm() {
                    
                     <input
                       type="text"
-                      name="image1"
+                      {...register("image1",{
+                        required: "image1 is required",
+                      })}  
                       id="image1"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
@@ -211,7 +258,9 @@ function ProductForm() {
                    
                     <input
                       type="text"
-                      name="image2"
+                      {...register("image2",{
+                        required: "image2 is required",
+                      })}  
                       id="image2"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
@@ -232,7 +281,9 @@ function ProductForm() {
                    
                     <input
                       type="text"
-                      name="image3"
+                      {...register("image3",{
+                        required: "image3 is required",
+                      })}  
                       id="image3"
                       className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                     />
