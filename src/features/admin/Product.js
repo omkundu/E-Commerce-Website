@@ -1,33 +1,71 @@
 
 import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useDispatch, useSelector } from 'react-redux';
-import { selectBrands } from './ProductListSlice';
+import { fetchProductByIdAsync, selectBrands, selectCategories, selectProductById } from './ProductListSlice';
 import { useForm } from 'react-hook-form';
 import { createProductAsync } from '../Product-List/ProductListSlice';
+import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function ProductForm() {
-    const brands=useSelector(selectBrands);
-    // const categories=useSelector(selectCategories);
-    const dispatch=useDispatch();
+
 
     const {
         handleSubmit,
         register,
+        setValue,
         formState: { errors },
       } = useForm();
-    
 
+    const brands=useSelector(selectBrands);
+    const categories=useSelector(selectCategories);
+    const dispatch=useDispatch();
+    const params=useParams()
+    const selectedProduct=useSelector(selectProductById)
+    
+      useEffect(()=>{
+        if(params.id){
+           dispatch(fetchProductByIdAsync(params.id))
+
+        }
+    },[params.id,dispatch])
+
+   useEffect(()=>{
+    if(selectedProduct){
+        setValue("title",selectedProduct.title);
+        setValue("description",selectedProduct.description);
+        setValue("price",selectedProduct.price);
+        setValue("rating",selectedProduct.rating);
+        setValue("discountPercentage",selectedProduct.discountPercentage);
+        setValue("thumbnail",selectedProduct.thumbnail);
+        setValue("stock",selectedProduct.stock);
+        setValue("images",selectedProduct.images);
+        setValue("brand",selectedProduct.brand);
+        setValue("category",selectedProduct.category);
+    }
+    
+   },[selectedProduct,setValue])
 
   return (
     <div>
-        noValidate
-      <form  onSubmit={handleSubmit((data) => {
-        const product={...data}
+       
+      <form  noValidate  onSubmit={handleSubmit((data) => {
+        const product={...data};
         product.images=[product.image1,product.image2,product.image3,product.thumbnail]
         product.rating=0;
+        product.images=[
+            product.image1,
+            product.image2,
+            product.image3,
+            product.thumbnail,
+        ];
         delete product["image1"]
         delete product["image2"]
         delete product["image3"]
+        product.price=+product.price
+        product.stock=+product.stock
+        product.discountPercentage=+product.discountPercentage
+
         console.log(product)
       dispatch(createProductAsync(product))
            
@@ -109,7 +147,7 @@ function ProductForm() {
                 </div>
 
 
-                {/* <div className="col-span-full">
+                <div className="col-span-full">
 
                 <label
                 htmlFor="category"
@@ -128,7 +166,7 @@ function ProductForm() {
                 </select>
                 </div>
 
-                </div> */}
+                </div>
 
               <div className="sm:col-span-2">
                 <label

@@ -3,7 +3,7 @@ import { StarIcon } from "@heroicons/react/20/solid";
 import { RadioGroup } from "@headlessui/react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  fetchAllProductByIdsAsync,
+  fetchProductByIdAsync,
   selectProductById,
 } from "../ProductListSlice";
 import { fetchProductById } from "../ProductListApi";
@@ -49,7 +49,7 @@ export default function ProductDetails() {
   const params = useParams();
 
   useEffect(() => {
-    dispatch(fetchAllProductByIdsAsync(params.id));
+    dispatch(fetchProductByIdAsync(params.id));
   }, [dispatch, params.id]);
 
   const handleCart = (e) => {

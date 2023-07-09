@@ -80,7 +80,7 @@ export default function AdminProductList() {
       options: brands,
     },
   ];
-
+console.log(products.id)
   const [filter, setFilter] = useState({});
   const [sort, setSort] = useState({});
   const [page, setPage] = useState(1);
@@ -571,8 +571,11 @@ function ProductGrid({ products }) {
                   </div>
                 </Link>
                 <div>
-                          <button  className="rounded-md my-5 bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                          >Edit Product</button>
+                          <Link to={`admin/product-form/edit/${products.id}`}
+
+                           className="rounded-md my-5 bg-indigo-600 px-3 pt-1 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                          >Edit Product
+                          </Link>
                         </div>
                 </div>
               ))}

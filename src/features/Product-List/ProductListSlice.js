@@ -26,7 +26,7 @@ export const fetchAllProductsAsync = createAsyncThunk(
   }
 );
 
-export const fetchAllProductByIdsAsync = createAsyncThunk(
+export const fetchProductByIdAsync = createAsyncThunk(
   "product/fetchProductById",
   async (id) => {
     const response = await fetchProductById(id);
@@ -112,10 +112,10 @@ export const productSlice = createSlice({
         state.categories = action.payload;
       })
 
-      .addCase(fetchAllProductByIdsAsync.pending, (state) => {
+      .addCase(fetchProductByIdAsync.pending, (state) => {
         state.status = "loading";
       })
-      .addCase(fetchAllProductByIdsAsync.fulfilled, (state, action) => {
+      .addCase(fetchProductByIdAsync.fulfilled, (state, action) => {
         state.status = "idle";
         state.selectedProduct = action.payload;
       })
