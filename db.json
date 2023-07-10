@@ -2,9 +2,9 @@
   "products": [
     {
       "id": 1,
-      "title": "iPhone 9",
+      "title": "iPhone 12",
       "description": "An apple mobile which is nothing like apple",
-      "price": 122,
+      "price": 121,
       "discountPercentage": 12.97,
       "rating": 0,
       "stock": 98,
