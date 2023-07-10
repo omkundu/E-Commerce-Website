@@ -14,6 +14,7 @@ function ProductForm() {
         handleSubmit,
         register,
         setValue,
+        reset,
         formState: { errors },
       } = useForm();
 
@@ -49,6 +50,13 @@ function ProductForm() {
     
    },[selectedProduct,setValue,params.id])
 
+
+   const handleDelete=()=>{
+    const product={...selectedProduct};
+    product.deleted=true;
+    dispatch(updateProductAsync(product))
+   }
+
   return (
     <div>
        
@@ -62,6 +70,7 @@ function ProductForm() {
             product.image3,
             product.thumbnail,
         ];
+        product.rating=0
         delete product["image1"]
         delete product["image2"]
         delete product["image3"]
@@ -71,8 +80,10 @@ function ProductForm() {
      
      if(params.id){
       product.id=params.id;
+      product.rating=selectedProduct.rating||0
       dispatch(updateProductAsync(product))
-      product.rating=product.selectedProduct||0
+      reset()
+
 
      }else{
      dispatch(createProductAsync(product))
@@ -434,6 +445,15 @@ function ProductForm() {
           >
             Cancel
           </button>
+
+         {selectedProduct && <button
+            onClick={handleDelete}
+            className="rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+          >
+            Delete
+          </button>}
+
+
           <button
             type="submit"
             className="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
