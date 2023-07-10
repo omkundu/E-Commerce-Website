@@ -3,7 +3,7 @@ import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductByIdAsync, selectBrands, selectCategories, selectProductById } from './ProductListSlice';
 import { useForm } from 'react-hook-form';
-import { createProductAsync } from '../Product-List/ProductListSlice';
+import { createProductAsync, updateProductAsync } from '../Product-List/ProductListSlice';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -35,11 +35,12 @@ function ProductForm() {
         setValue("title",selectedProduct.title);
         setValue("description",selectedProduct.description);
         setValue("price",selectedProduct.price);
-        setValue("rating",selectedProduct.rating);
         setValue("discountPercentage",selectedProduct.discountPercentage);
         setValue("thumbnail",selectedProduct.thumbnail);
         setValue("stock",selectedProduct.stock);
-        setValue("images",selectedProduct.images);
+        setValue("image1",selectedProduct.images[0]);
+        setValue("image2",selectedProduct.images[1]);
+        setValue("image3",selectedProduct.images[2]);
         setValue("brand",selectedProduct.brand);
         setValue("category",selectedProduct.category);
     }
@@ -65,9 +66,13 @@ function ProductForm() {
         product.price=+product.price
         product.stock=+product.stock
         product.discountPercentage=+product.discountPercentage
-
-        console.log(product)
-      dispatch(createProductAsync(product))
+     
+     if(params.id){
+      product.id=params.id;
+      dispatch(updateProductAsync(product))
+     }else{
+     dispatch(createProductAsync(product))
+     }
            
             })}>
         <div className="space-y-12 bg-white p-12">
