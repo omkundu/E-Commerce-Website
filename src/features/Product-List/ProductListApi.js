@@ -13,6 +13,7 @@ export function fetchProductsByFilters(filter, sort, pagination) {
   // sort={_sort:"Price",_order="desc"}
   // Todo:on server we will support multi values
   //Pagination=_page=1&_limit=10
+  //TODO:-Server will filter deleted products in case
   let queryString = "";
 
   for (let key in filter) {
