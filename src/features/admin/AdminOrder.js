@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchProductsByFiltersAsync } from "./ProductListSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { ITEM_PER_PAGE } from "../../app/constants";
+import { ITEM_PER_PAGE, discountPrice } from "../../app/constants";
 import { fetchAllOrdersAsync, selectOrders, selectTotalOrders } from "../order/orderSlice";
 import {EyeIcon, PencilIcon} from "@heroicons/react/24/outline"
 function AdminOrder() {
@@ -62,7 +62,7 @@ function AdminOrder() {
                               src={item.thumbnail}
                             />
                           </div>
-                          <span>{item.title} - {item.quantity} - ${item.price}</span>
+                          <span>{item.title} - {item.quantity} - ${discountPrice(item)}</span>
                         </div>)}
                        
                       </td>

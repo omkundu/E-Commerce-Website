@@ -1778,7 +1778,26 @@
     {
       "email": "admin123@gmail.com",
       "password": "omkundu123@O",
-      "addresses": [],
+      "addresses": [
+        {
+          "name": "Bhagavat Kundu",
+          "email": "omkundu156@gmail.com",
+          "Phone": "+917294170124",
+          "street": "Near chandil thana",
+          "city": "Chandil",
+          "state": "JHARKHAND",
+          "pinCode": "832401"
+        },
+        {
+          "name": "Om Kundu",
+          "email": "omkundu156@gmail.com",
+          "Phone": "07004398824",
+          "street": "Near chandil thana,bhind union bank of india",
+          "city": "Chandi",
+          "state": "JHARKHAN",
+          "pinCode": "83240"
+        }
+      ],
       "role": "admin",
       "id": 3
     }
@@ -2707,6 +2726,90 @@
       "selectedAddress": null,
       "status": "Pending",
       "id": 16
+    },
+    {
+      "items": [
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 998,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 3,
+          "id": 1
+        },
+        {
+          "title": "iPhone X",
+          "description": "SIM-Free, Model A19211 6.5-inch Super Retina HD display with OLED technology A12 Bionic chip with ...",
+          "price": 998,
+          "discountPercentage": 17.94,
+          "rating": 4.44,
+          "stock": 34,
+          "brand": "Apple",
+          "category": "smartphones",
+          "thumbnail": "https://i.dummyjson.com/data/products/2/thumbnail.jpg",
+          "images": [
+            "https://i.dummyjson.com/data/products/2/1.jpg",
+            "https://i.dummyjson.com/data/products/2/2.jpg",
+            "https://i.dummyjson.com/data/products/2/3.jpg",
+            "https://i.dummyjson.com/data/products/2/thumbnail.jpg"
+          ],
+          "quantity": 1,
+          "user": 3,
+          "id": 2
+        }
+      ],
+      "totalAmount": 1638,
+      "totalItems": 2,
+      "user": {
+        "email": "admin123@gmail.com",
+        "password": "omkundu123@O",
+        "addresses": [
+          {
+            "name": "Bhagavat Kundu",
+            "email": "omkundu156@gmail.com",
+            "Phone": "+917294170124",
+            "street": "Near chandil thana",
+            "city": "Chandil",
+            "state": "JHARKHAND",
+            "pinCode": "832401"
+          },
+          {
+            "name": "Om Kundu",
+            "email": "omkundu156@gmail.com",
+            "Phone": "07004398824",
+            "street": "Near chandil thana,bhind union bank of india",
+            "city": "Chandi",
+            "state": "JHARKHAN",
+            "pinCode": "83240"
+          }
+        ],
+        "role": "admin",
+        "id": 3
+      },
+      "paymentMethod": "card",
+      "selectedAddress": {
+        "name": "Om Kundu",
+        "email": "omkundu156@gmail.com",
+        "Phone": "07004398824",
+        "street": "Near chandil thana,bhind union bank of india",
+        "city": "Chandi",
+        "state": "JHARKHAN",
+        "pinCode": "83240"
+      },
+      "status": "Pending",
+      "id": 17
     }
   ]
 }

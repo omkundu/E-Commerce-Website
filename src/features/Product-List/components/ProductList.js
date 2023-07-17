@@ -25,7 +25,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { handler } from "@tailwindcss/aspect-ratio";
-import { ITEM_PER_PAGE } from "../../../app/constants";
+import { ITEM_PER_PAGE, discountPrice } from "../../../app/constants";
 const items = [
   {
     id: 1,
@@ -548,11 +548,8 @@ function ProductGrid({ products }) {
                       </div>
                       <div>
                         <p className="text-sm block font-medium  text-gray-900">
-                          $
-                          {Math.round(
-                            product.price *
-                              (1 - product.discountPercentage / 100)
-                          )}
+                          ${discountPrice(product)}
+                         
                         </p>
                         <p className="text-sm block font-medium line-through text-gray-400">
                           ${product.price}
