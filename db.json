@@ -1913,7 +1913,7 @@
         "state": "JHARKHAND",
         "pinCode": "832401"
       },
-      "status": "Pending",
+      "status": "dispatched",
       "id": 3
     },
     {
@@ -1978,7 +1978,7 @@
       },
       "paymentMethod": "cash",
       "selectedAddress": null,
-      "status": "Pending",
+      "status": "delievered",
       "id": 4
     },
     {
@@ -2043,7 +2043,7 @@
       },
       "paymentMethod": "cash",
       "selectedAddress": null,
-      "status": "Pending",
+      "status": "dispatched",
       "id": 5
     },
     {

@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import { fetchProductsByFiltersAsync } from "./ProductListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ITEM_PER_PAGE, discountPrice } from "../../app/constants";
-import { fetchAllOrdersAsync, selectOrders, selectTotalOrders } from "../order/orderSlice";
+import { fetchAllOrdersAsync, selectOrders, selectTotalOrders, updateOrderAsync } from "../order/orderSlice";
 import {EyeIcon, PencilIcon} from "@heroicons/react/24/outline"
 function AdminOrder() {
     const [page,setPage]=useState(1)
     const dispatch=useDispatch()
     const orders=useSelector(selectOrders)
     const totalOrders=useSelector(selectTotalOrders)
+    const [editableOrderId,setEditableOrderId]=useState(-1)
 
     useEffect(() => {
         const pagination = { _page: page, _limit: ITEM_PER_PAGE };
@@ -16,13 +17,18 @@ function AdminOrder() {
         
       }, [dispatch, page]);
 
-      const handleEdit=()=>{
-      console.log("HandleEdit")
+      const handleEdit=(order)=>{
+        setEditableOrderId(order.id)
       }
 
 
       const handleShow=()=>{
         console.log("handleShow")
+      }
+
+      const handleUpdate=(e,order)=>{
+        const updateOrder={...order,status:e.target.value}
+        dispatch(updateOrderAsync(updateOrder))
       }
     
     return (
@@ -90,9 +96,18 @@ function AdminOrder() {
                         </div>
                       </td>
                       <td className="py-3 px-6 text-center">
-                        <span className="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+                      {order.id===editableOrderId ? (
+                       <select onChange={(e)=>handleUpdate(e,order)}>
+                          <option value="pending">Pending</option>
+                          <option value="dispatched">Dispatched</option>
+                          <option value="delievered">Delivered</option>
+                          <option value="cancelled">Cancelled</option>
+                        </select>
+                        ):(
+                           <span className="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
                           {order.status}
-                        </span>
+                        </span> 
+                    )}
                       </td>
                       <td className="py-3 px-6 text-center">
                         <div className="flex item-center justify-center">
