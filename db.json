@@ -1978,7 +1978,7 @@
       },
       "paymentMethod": "cash",
       "selectedAddress": null,
-      "status": "delievered",
+      "status": "dispatched",
       "id": 4
     },
     {
@@ -2043,7 +2043,7 @@
       },
       "paymentMethod": "cash",
       "selectedAddress": null,
-      "status": "dispatched",
+      "status": "delievered",
       "id": 5
     },
     {
@@ -2108,7 +2108,7 @@
       },
       "paymentMethod": "cash",
       "selectedAddress": null,
-      "status": "Pending",
+      "status": "cancelled",
       "id": 6
     },
     {
