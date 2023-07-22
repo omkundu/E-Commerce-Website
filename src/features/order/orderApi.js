@@ -28,8 +28,13 @@ export function updateOrder(order) {
 
 
 
-export function fetchAllOrders(pagination) {
+export function fetchAllOrders(pagination,sort) {
   let queryString='';
+
+  for (let key in sort) {
+    queryString += `${key}=${sort[key]}&`;
+  }
+
   for (let key in pagination) {
     queryString += `${key}=${pagination[key]}&`;
   }
