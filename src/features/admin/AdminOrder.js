@@ -16,7 +16,7 @@ function AdminOrder() {
   const orders = useSelector(selectOrders);
   const totalOrders = useSelector(selectTotalOrders);
   const [editableOrderId, setEditableOrderId] = useState(-1);
-  const [sort, setSort] = (useState = {});
+  const [sort, setSort] = useState({});
 
   
 
@@ -44,6 +44,7 @@ function AdminOrder() {
   };
   const handlePage = (page) => {
     setPage(page);
+   
   };
 
   useEffect(() => {
@@ -81,7 +82,7 @@ function AdminOrder() {
                       onClick={(e) =>
                         handleSort({
                           sort: "id",
-                          order: sort?._order === "asc" ? "desc" : "asc",
+                          order: sort?._order === "asc" ? "desc" : "asc"
                         })
                       }
                     >
