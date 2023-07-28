@@ -1800,6 +1800,13 @@
       ],
       "role": "admin",
       "id": 3
+    },
+    {
+      "email": "omkundu156@gmail.com",
+      "password": "omkundu12@O",
+      "addresses": [],
+      "role": "user",
+      "id": 4
     }
   ],
   "cart": [],

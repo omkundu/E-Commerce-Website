@@ -8,7 +8,7 @@ import {
 } from "../ProductListSlice";
 import { fetchProductById } from "../ProductListApi";
 import { useParams } from "react-router-dom";
-import { addToCartAsync } from "../../cart/cartSlice";
+import { addToCartAsync, selectItems } from "../../cart/cartSlice";
 import { selectLoggedInUser } from "../../auth/Components/authSlice";
 import { discountPrice } from "../../../app/constants";
 
@@ -48,6 +48,7 @@ export default function ProductDetails() {
   const product = useSelector(selectProductById);
   const dispatch = useDispatch();
   const params = useParams();
+  const items=useSelector(selectItems)
 
   useEffect(() => {
     dispatch(fetchProductByIdAsync(params.id));
@@ -55,10 +56,16 @@ export default function ProductDetails() {
 
   const handleCart = (e) => {
     e.preventDefault();
-    alert("Your Product Added Successfully");
-    const newItem = { ...product, quantity: 1, user: user.id };
-    delete newItem["id"];
-    dispatch(addToCartAsync(newItem));
+    if (items.findIndex(item => item.productId === product.id) < 0) {
+      console.log({items,product})
+
+      alert("Your Product Added Successfully");
+      const newItem = { ...product, productId:product.id, quantity: 1, user: user.id };
+      delete newItem["id"];
+      dispatch(addToCartAsync(newItem));
+    }else{
+      console.log("already added")
+    }
   };
 
   return (

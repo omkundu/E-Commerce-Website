@@ -13,9 +13,8 @@ import { selectLoggedInUser } from "../auth/Components/authSlice";
 
 
 const navigation = [
-  { name: "Dashboard", link: "#", user: true },
-  { name: "Team", link: "#", user: true },
-  { name: "Admin", link: "/admin" ,admin:true},
+  { name: "Products", link: "/", user: true },
+  { name: "Products", link: "/admin" ,admin:true},
   { name: "Orders", link: "/admin/orders" ,admin:true},
 
 
@@ -46,7 +45,7 @@ function Navbar({ children }) {
                       <Link to="/">
                         <img
                           className="h-8 w-8"
-                          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                          src="https://img.freepik.com/free-vector/gradient-e-commerce-logo-collection_23-2148942893.jpg?t=st=1690527660~exp=1690528260~hmac=71a770b0ae8c455ce2ebb220d74b849e0fc356a143b348c491edf605889e706e"
                           alt="Your Company"
                         />
                       </Link>
@@ -226,8 +225,8 @@ function Navbar({ children }) {
 
         <header className="bg-white shadow">
           <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-              E-Commerce
+            <h1 className="text-3xl font-bold tracking-tight text-red-900">
+              OnlineShop
             </h1>
           </div>
         </header>

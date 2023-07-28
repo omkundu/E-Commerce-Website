@@ -78,7 +78,7 @@ function AdminOrder() {
                 <thead>
                   <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                     <th
-                      className="py-3 px-6 text-left"
+                      className="py-3 px-6 text-left cursor-pointer"
                       onClick={(e) =>
                         handleSort({
                           sort: "id",

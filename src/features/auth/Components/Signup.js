@@ -27,7 +27,7 @@ export default function Signup() {
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
             className="mx-auto h-10 w-auto"
-            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+            src="https://img.freepik.com/free-vector/gradient-e-commerce-logo-collection_23-2148942893.jpg?t=st=1690527660~exp=1690528260~hmac=71a770b0ae8c455ce2ebb220d74b849e0fc356a143b348c491edf605889e706e"
             alt="Your Company"
           />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
