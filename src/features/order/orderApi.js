@@ -15,7 +15,7 @@ export function createOrder(order) {
 
 export function updateOrder(order) {
   return new Promise(async (resolve) => {
-    const response = await fetch("http://localhost:8080/orders/"+order.id, {
+    const response = await fetch("https://solo-project-data.onrender.com/orders/"+order.id, {
       method: "PATCH",
       body: JSON.stringify(order),
       headers: { "content-type": "application/json" },
@@ -41,7 +41,7 @@ export function fetchAllOrders(pagination,sort) {
   return new Promise(async (resolve) => {
     //TODO:we will not hard-code server
     const response = await fetch(
-      "http://localhost:8080/orders?" + queryString
+      "https://solo-project-data.onrender.com/orders?" + queryString
     );
     const data = await response.json();
     const totalorders = await response.headers.get("X-Total-Count");
